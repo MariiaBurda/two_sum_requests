@@ -22,8 +22,8 @@ class TwoSumRequestList(APIView, PaginationHandlerMixin):
         page = self.paginate_queryset(two_sum_requests)
 
         if page is not None:
-            serializer = self.get_paginated_response(self.serializer_class(page,
-                                                                           many=True).data)
+            serializer = self.get_paginated_response(
+                self.serializer_class(page, many=True).data)
         else:
             serializer = self.serializer_class(two_sum_requests, many=True)
 
@@ -36,7 +36,8 @@ class TwoSumRequestList(APIView, PaginationHandlerMixin):
         serializer = self.serializer_class(data=two_sum_request)
 
         if not serializer.is_valid(raise_exception=True):
-            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+            return Response(serializer.errors,
+                            status=status.HTTP_400_BAD_REQUEST)
 
         try:
             input_validation(
@@ -55,7 +56,8 @@ class TwoSumRequestList(APIView, PaginationHandlerMixin):
                 status=status.HTTP_201_CREATED
             )
         except Exception as e:
-            return Response({"message": f"{e}"}, status=status.HTTP_400_BAD_REQUEST)
+            return Response({"message": f"{e}"},
+                            status=status.HTTP_400_BAD_REQUEST)
 
 
 class TwoSumRequestDetail(APIView):
@@ -88,17 +90,22 @@ def input_validation(nums: list, target: int):
     """
     try:
         nums_length = len(nums)
-    except TypeError:
-        raise Exception("Parameter 'nums' should be a list with integer numbers")
+    except TypeError as type_error:
+        raise Exception("Parameter 'nums' should be a list with "
+                        "integer numbers") from type_error
 
-    if not (2 <= nums_length <= 10**4):
-        raise Exception("Length of parameter 'nums' should be more than 2 and less than 10^4")
+    if not 2 <= nums_length <= 10**4:
+        raise Exception("Length of parameter 'nums' should be more "
+                        "than 2 and less than 10^4")
 
-    if len(list(filter(lambda num: -10**9 <= num <= 10**9, nums))) != nums_length:
-        raise Exception("Every number in parameter 'nums' should be more than -10^9 and less than 10^9")
+    if len(list(filter(
+            lambda num: -10**9 <= num <= 10**9, nums))) != nums_length:
+        raise Exception("Every number in parameter 'nums' should "
+                        "be more than -10^9 and less than 10^9")
 
-    if not (-10 ** 9 <= target <= 10 ** 9):
-        raise Exception("Parameter 'target' should be more than -10^9 and less than 10^9")
+    if not -10 ** 9 <= target <= 10 ** 9:
+        raise Exception("Parameter 'target' should be more than -10^9 and "
+                        "less than 10^9")
 
 
 def two_sum(nums: list, target: int) -> list:
@@ -107,12 +114,12 @@ def two_sum(nums: list, target: int) -> list:
     or an error if we cannot find the sum of numbers for a given target
     """
     index = 0
-    d = {}
+    nums_and_indexes = {}
 
     for num in nums:
-        if target - num in d:
-            return [d[target-num], index]
-        d[num] = index
+        if target - num in nums_and_indexes:
+            return [nums_and_indexes[target-num], index]
+        nums_and_indexes[num] = index
         index += 1
 
     raise Exception("Cannot find the sum of numbers for a given target")
