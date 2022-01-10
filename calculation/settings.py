@@ -94,8 +94,8 @@ WSGI_APPLICATION = 'calculation.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'two-sum-requests',
-        'USER': 'admin',
+        'NAME': get_secret('DB_NAME'),
+        'USER': get_secret('DB_USER_NAME'),
         'PASSWORD': get_secret('DB_PASSWORD'),
         'HOST': '127.0.0.1',
         'PORT': '3306'
