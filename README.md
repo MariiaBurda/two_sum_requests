@@ -75,3 +75,12 @@ $ python manage.py runserver
    - GET /api/two-sum/{id} - specific result by id.
    
    - DELETE /api/two-sum/{id} - delete entity.
+
+### TODOs
+
+- cover with API tests all endpoints;
+- cover with unit tests main blocks;
+- add comments;
+- wrap DRF app and database in docker compose;
+- add output key in accepted valid request object (check for relevance first)
+
