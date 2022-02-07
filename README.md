@@ -1,6 +1,6 @@
 # Two sum requests 
 Django REST API for making requests for finding two numbers in a list which sum is equal to target integer number. Also for storing and deleting valid requests.
-Used Python 3.8.10, Django 4.0.1, GRF 3.13.1, MySQL 2.1.0
+Used Python 3.8.10, Django 4.0.1, DRF 3.13.1, MySQL 2.1.0
 
 ### Getting Started
 These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. 
