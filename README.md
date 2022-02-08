@@ -14,14 +14,14 @@ These instructions will get you a copy of the project up and running on your loc
 > create and activate virtual environment first
 
 ```shell
-$ python3 -m venv venv
-$ . venv/bin/activate
+python3 -m venv venv
+. venv/bin/activate
 ```
 
 > install all needed packages
 
 ```shell
-$ pip install -r requirements.txt
+pip install -r requirements.txt
 ```
 
 Setup database and create file with global variables 
@@ -43,7 +43,7 @@ Setup database and create file with global variables
 > run django server
 
 ```shell
-$ python manage.py runserver
+python manage.py runserver
 ```
 ### Test API urls
 
